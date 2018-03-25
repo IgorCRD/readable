@@ -12,6 +12,8 @@ module.exports = {
       root: path.resolve(__dirname, './'),
       src: path.resolve(__dirname, 'src/'),
       api: path.resolve(__dirname, 'src/api'),
+      modules: path.resolve(__dirname, 'src/modules'),
+      configs: path.resolve(__dirname, 'src/configs'),
     },
     extensions: ['.js', '.jsx'],
   },

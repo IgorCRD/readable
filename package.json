@@ -13,7 +13,11 @@
     "build": "webpack --mode production",
     "devbuild": "webpack --mode development",
     "lint": "yarn eslint ./src",
-    "test": "jest"
+    "integration":
+      "jest --passWithNoTests --runInBand --testPathPattern=.*\\.integ\\.\\(test\\|spec\\)\\.js\\(x\\)?",
+    "unit":
+      "jest --passWithNoTests --testPathPattern=.*\\.unit\\.\\(test\\|spec\\)\\.js\\(x\\)?",
+    "test": "yarn run integration && yarn run unit"
   },
   "jest": {
     "testPathIgnorePatterns": [
@@ -48,6 +52,7 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.1.0",
     "jest": "^22.4.3",
+    "jest-cli": "^22.4.3",
     "jest-webpack-resolver": "^0.3.0",
     "prettier": "^1.11.1",
     "webpack": "^4.2.0",
