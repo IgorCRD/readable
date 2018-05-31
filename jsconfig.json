@@ -6,11 +6,9 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
-      "root/*": ["./*"],
       "src/*": ["src/*"],
       "api/*": ["src/api/*"],
-      "modules/*": ["src/modules/*"],
-      "configs/*": ["src/configs/*"]
+      "modules/*": ["src/modules/*"]
     }
   },
   "exclude": ["dist", "node_modules"]

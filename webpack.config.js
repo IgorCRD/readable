@@ -1,4 +1,7 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
@@ -9,11 +12,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      root: path.resolve(__dirname, './'),
+      api: path.resolve(__dirname, 'src/api/'),
+      assets: path.resolve(__dirname, 'assets/'),
       src: path.resolve(__dirname, 'src/'),
-      api: path.resolve(__dirname, 'src/api'),
-      modules: path.resolve(__dirname, 'src/modules'),
-      configs: path.resolve(__dirname, 'src/configs'),
     },
     extensions: ['.js', '.jsx'],
   },
@@ -66,13 +67,27 @@ module.exports = {
       rewrites: [{ from: '.', to: './dist/index.html' }],
     },
     compress: true,
-    disableHostCheck: true,
+    hot: true,
+    overlay: {
+      warnings: true,
+      errors: true,
+    },
   },
   plugins: [
+    new CleanWebpackPlugin(['dist']),
     new HtmlWebPackPlugin({
       favicon: './assets/images/favicon.ico',
       template: './src/index.html',
       filename: './index.html',
     }),
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8,
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
 };

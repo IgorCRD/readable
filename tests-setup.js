@@ -1,22 +1,22 @@
 import 'whatwg-fetch';
 
-const localStorageMock = (function() {
+const localStorageMock = (function localStorageMock() {
   let store = {};
   return {
-    getItem: function(key) {
+    getItem(key) {
       return store[key] || null;
     },
-    setItem: function(key, value) {
+    setItem(key, value) {
       store[key] = value.toString();
     },
-    removeItem: function(key) {
+    removeItem(key) {
       delete store[key];
     },
-    clear: function() {
+    clear() {
       store = {};
     },
   };
-})();
+}());
 
 Object.defineProperty(global, 'localStorage', {
   value: localStorageMock,

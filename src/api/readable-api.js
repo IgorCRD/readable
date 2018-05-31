@@ -29,11 +29,9 @@ class ReadableAPIWrapper {
       .then(res => res.json())
       .then(data => data.categories);
 
-  getPostsByCategory = category => {
+  getPostsByCategory = (category) => {
     const { path } =
-      typeof category === 'string' || category instanceof String
-        ? { path: category }
-        : category;
+      typeof category === 'string' || category instanceof String ? { path: category } : category;
 
     return fetch(`${this.apiURL}/${path}/posts`, {
       headers: { ...this.headers },
@@ -50,7 +48,7 @@ class ReadableAPIWrapper {
       headers: { ...this.headers },
     }).then(res => res.json());
 
-  publishPost = newPost => {
+  publishPost = (newPost) => {
     const post = { ...newPost };
     if (!post.id) {
       post.id = this.generateGuid();

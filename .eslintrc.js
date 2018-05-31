@@ -9,8 +9,13 @@ module.exports = {
       experimentalObjectRestSpread: true,
     },
   },
-  extends: ['last', 'prettier/react', 'plugin:react/recommended'],
+  rules: {
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/no-did-mount-set-state': [false],
+  },
+  extends: ['airbnb', 'plugin:react/recommended'],
   env: {
+    es6: true,
     browser: true,
     node: true,
     jest: true,
@@ -18,7 +23,7 @@ module.exports = {
   settings: {
     react: {
       pragma: 'React',
-      version: '16.2.0',
+      version: '16.3.2',
     },
     'import/resolver': {
       webpack: {

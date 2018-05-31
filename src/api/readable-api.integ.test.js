@@ -27,8 +27,8 @@ const comment = {
 };
 
 describe('ReadableAPI', () => {
-  it('should be capable to publish a post', done => {
-    ReadableAPI.publishPost(reactPost).then(response => {
+  it('should be capable to publish a post', (done) => {
+    ReadableAPI.publishPost(reactPost).then((response) => {
       const newPostResponse = {
         ...reactPost,
         timestamp: reactPost.timestamp.toJSON(),
@@ -41,8 +41,8 @@ describe('ReadableAPI', () => {
     });
   });
 
-  it('should be capable to publish another post with a differente category', done => {
-    ReadableAPI.publishPost(reduxPost).then(response => {
+  it('should be capable to publish another post with a differente category', (done) => {
+    ReadableAPI.publishPost(reduxPost).then((response) => {
       const newPostResponse = {
         ...reduxPost,
         timestamp: reduxPost.timestamp.toJSON(),
@@ -55,8 +55,8 @@ describe('ReadableAPI', () => {
     });
   });
 
-  it("should be capable to retreave a post by passing the post's id", done => {
-    ReadableAPI.getPostById(reactPost.id).then(response => {
+  it("should be capable to retreave a post by passing the post's id", (done) => {
+    ReadableAPI.getPostById(reactPost.id).then((response) => {
       const getPostByIdResponse = {
         ...reactPost,
         timestamp: reactPost.timestamp.toJSON(),
@@ -69,20 +69,20 @@ describe('ReadableAPI', () => {
     });
   });
 
-  it('should be capable of reatriving a list of posts categories', done => {
+  it('should be capable of reatriving a list of posts categories', (done) => {
     const defaultCategories = [
       { name: 'react', path: 'react' },
       { name: 'redux', path: 'redux' },
       { name: 'udacity', path: 'udacity' },
     ];
-    ReadableAPI.getAllCategories().then(data => {
+    ReadableAPI.getAllCategories().then((data) => {
       expect(data).toEqual(defaultCategories);
       done();
     });
   });
 
-  it('should be capable of reatriving all posts from one categorie', done => {
-    ReadableAPI.getPostsByCategory('redux').then(data => {
+  it('should be capable of reatriving all posts from one categorie', (done) => {
+    ReadableAPI.getPostsByCategory('redux').then((data) => {
       const reduxExpectedPost = {
         ...reduxPost,
         timestamp: reduxPost.timestamp.toJSON(),
@@ -95,8 +95,8 @@ describe('ReadableAPI', () => {
     });
   });
 
-  it('should be capable of reatriving all posts from all categories', done => {
-    ReadableAPI.getAllPosts().then(data => {
+  it('should be capable of reatriving all posts from all categories', (done) => {
+    ReadableAPI.getAllPosts().then((data) => {
       const expectedPosts = [
         {
           ...reduxPost,
@@ -118,8 +118,8 @@ describe('ReadableAPI', () => {
     });
   });
 
-  it('should be capable of upVoting a post by its post Id', done => {
-    ReadableAPI.upVotePost(reduxPost.id).then(data => {
+  it('should be capable of upVoting a post by its post Id', (done) => {
+    ReadableAPI.upVotePost(reduxPost.id).then((data) => {
       const expectedPost = {
         ...reduxPost,
         timestamp: reduxPost.timestamp.toJSON(),
@@ -132,8 +132,8 @@ describe('ReadableAPI', () => {
     });
   });
 
-  it('should be capable of downVoting a post by its post Id', done => {
-    ReadableAPI.downVotePost(reactPost.id).then(data => {
+  it('should be capable of downVoting a post by its post Id', (done) => {
+    ReadableAPI.downVotePost(reactPost.id).then((data) => {
       const expectedPost = {
         ...reactPost,
         timestamp: reactPost.timestamp.toJSON(),
@@ -146,11 +146,11 @@ describe('ReadableAPI', () => {
     });
   });
 
-  it('should be capable of editing a post', done => {
+  it('should be capable of editing a post', (done) => {
     ReadableAPI.editPost(reduxPost.id, {
       ...reduxPost,
       title: 'Edited title',
-    }).then(data => {
+    }).then((data) => {
       const editedPostResponse = {
         ...reduxPost,
         title: 'Edited title',
@@ -164,8 +164,8 @@ describe('ReadableAPI', () => {
     });
   });
 
-  it('should be capable of deleting a post', done => {
-    ReadableAPI.deletePost(reduxPost.id).then(data => {
+  it('should be capable of deleting a post', (done) => {
+    ReadableAPI.deletePost(reduxPost.id).then((data) => {
       const expectedPost = {
         ...reduxPost,
         title: 'Edited title',
@@ -179,8 +179,8 @@ describe('ReadableAPI', () => {
     });
   });
 
-  it('should be capable of adding a comment to a post', done => {
-    ReadableAPI.commentPost(reactPost.id, comment).then(data => {
+  it('should be capable of adding a comment to a post', (done) => {
+    ReadableAPI.commentPost(reactPost.id, comment).then((data) => {
       const expectedResp = {
         ...comment,
         deleted: false,
@@ -194,8 +194,8 @@ describe('ReadableAPI', () => {
     });
   });
 
-  it('should be capable of retrieving a post comments', done => {
-    ReadableAPI.getAllComments(reactPost.id).then(data => {
+  it('should be capable of retrieving a post comments', (done) => {
+    ReadableAPI.getAllComments(reactPost.id).then((data) => {
       const expectedResp = {
         ...comment,
         deleted: false,
@@ -209,8 +209,8 @@ describe('ReadableAPI', () => {
     });
   });
 
-  it('should be capable of down voting a comment', done => {
-    ReadableAPI.downVoteComment(comment.id).then(data => {
+  it('should be capable of down voting a comment', (done) => {
+    ReadableAPI.downVoteComment(comment.id).then((data) => {
       const expected = {
         ...comment,
         deleted: false,
@@ -224,8 +224,8 @@ describe('ReadableAPI', () => {
     });
   });
 
-  it('should be capable of up voting a comment', done => {
-    ReadableAPI.upVoteComment(comment.id).then(data => {
+  it('should be capable of up voting a comment', (done) => {
+    ReadableAPI.upVoteComment(comment.id).then((data) => {
       const expected = {
         ...comment,
         deleted: false,
@@ -239,12 +239,12 @@ describe('ReadableAPI', () => {
     });
   });
 
-  it('should be capable of editting a comment', done => {
+  it('should be capable of editting a comment', (done) => {
     const editedComment = {
       ...comment,
       body: 'This is an edited comment',
     };
-    ReadableAPI.editComment(comment.id, editedComment).then(data => {
+    ReadableAPI.editComment(comment.id, editedComment).then((data) => {
       const expected = {
         ...comment,
         body: 'This is an edited comment',
@@ -259,8 +259,8 @@ describe('ReadableAPI', () => {
     });
   });
 
-  it('should be capable of deleting a comment', done => {
-    ReadableAPI.deleteComment(comment.id).then(data => {
+  it('should be capable of deleting a comment', (done) => {
+    ReadableAPI.deleteComment(comment.id).then((data) => {
       const expected = {
         ...comment,
         body: 'This is an edited comment',
