@@ -23,7 +23,7 @@ module.exports = {
   settings: {
     react: {
       pragma: 'React',
-      version: '16.3.2',
+      version: '16.4.2',
     },
     'import/resolver': {
       webpack: {

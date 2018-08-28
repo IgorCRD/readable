@@ -12,7 +12,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      api: path.resolve(__dirname, 'src/api/'),
+      api: path.resolve(__dirname, 'src/modules/api/'),
+      modules: path.resolve(__dirname, 'src/modules/'),
       assets: path.resolve(__dirname, 'assets/'),
       src: path.resolve(__dirname, 'src/'),
     },
